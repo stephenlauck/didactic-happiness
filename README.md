@@ -8,7 +8,13 @@
 
 ### install and attestion
 
+If you have the the script in the local context you want to manage:
+
 `bash scripts/nix.sh`
+
+If you prefer to have a ubiquitously available url to pull the script from:
+
+`curl https://raw.githubusercontent.com/stephenlauck/didactic-happiness/main/scripts/nix.sh | bash`
 
 ### implicit policy that could become more explicit
 
