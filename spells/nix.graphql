@@ -1,0 +1,52 @@
+mutation AddResource {
+  addResource(
+    input: [
+      {
+        identifier: "nix"
+        attributes: [
+          # {
+          #   key: "nix should be installed"
+          #   value: "0"
+          #   read: "nix-env --version"
+          #   update: "export INVOKED_FROM_INSTALL_IN=1; bash nix-2.10.3-x86_64-linux/install-multi-user"
+          # },
+          # {
+          #   key: "nix-2.10.3-x86_64-linux.tar.xz should exist"
+          #   value: "0"
+          #   read: "test \"$(sha256sum -b nix-2.10.3-x86_64-linux.tar.xz | cut -c1-64)\" = \"21f14aecde1f00e7c463f75ddb819a03109e1ef108b82c4305c0bb6fa58a01a0\""
+          #   update: "curl --fail -L https://releases.nixos.org/nix/nix-2.10.3/nix-2.10.3-x86_64-linux.tar.xz -o nix-2.10.3-x86_64-linux.tar.xz"
+          # },
+          # {
+          #   key: "nix-2.10.3-x86_64-linux/install should exist"
+          #   value: "0"
+          #   read: "test -e nix-2.10.3-x86_64-linux/install-multi-user"
+          #   update: "tar -xJf nix-2.10.3-x86_64-linux.tar.xz"
+          # },
+          {
+            key: "/nix should exist"
+            value: "0"
+            read: "test -d /nix"
+            update: "sudo install -d -m755 -o $(id -u) -g $(id -g) /nix"
+          },
+          {
+            key: "nix should be installed multi-user"
+            value: "0"
+            read: "sudo -i -u $USER nix-env --version"
+            update: "curl -L https://nixos.org/nix/install | sh -s -- --daemon"
+          },
+        ]
+      }
+    ]
+  ) {
+    resource {
+      identifier
+      attributes {
+        id
+        key
+        value
+        read
+        update
+      }
+    }
+  }
+}
